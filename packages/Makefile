@@ -11,7 +11,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
   SECTION:=commotion
   CATEGORY:=Commotion
-  SUBMENU:=Libraries
+  SUBMENU:=Utilities
   DEPENDS:=+commotion +commotion-gui
   TITLE:=SSP Test
   URL:=https://commotionwireless.net/

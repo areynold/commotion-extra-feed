@@ -12,7 +12,7 @@ define Package/$(PKG_NAME)
 	SECTION:=commotion
 	CATEGORY:=Commotion
 	SUBMENU:=Utilities
-	DEPENDS:=+commotion +commotion-gui
+	DEPENDS:=+commotion
 	TITLE:=SSP Test
 	URL:=https://commotionwireless.net/
 endef

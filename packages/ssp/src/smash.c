@@ -4,17 +4,35 @@
 // http://www.thegeekstuff.com/2013/06/buffer-overflow/
 int main(void)
 {
-    int len = 0;
-    char str[10] = {0};
+    char buff[9];
+    int pass = 0;
 
-    printf("\n Enter name \n");
+    printf("Dummy password function to test stack protection\n \
+	to test, run ./smash and enter a string.\n \
+	* string 'commotion' should return 'Match. Root privileges given...'\n \
+	* a string less than 9 characters should return 'No match'\n \
+	* Without stack protection, a string greater than 10 characters should return 'No match. Root privileges given...'\n \
+	* With stack protection, a string greater than 10 characters should return an error and abort\n\n");
+	
 
-    gets(str); // Used gets() to cause buffer overflow
+    printf("\n Enter a string: \n");
+    gets(buff);
 
-    printf("\n len = [%d] \n", len);
+    if(strcmp(buff, "commotion"))
+    {
+        printf ("\n No match \n");
+    }
+    else
+    {
+        printf ("\n Match \n");
+        pass = 1;
+    }
 
-    len  = strlen(str);
-    printf("\n len of string entered is : [%d]\n", len);
+    if(pass)
+    {
+       /* Now Give root or admin rights to user*/
+        printf ("Root privileges given to the user \n");
+    }
 
     return 0;
 }

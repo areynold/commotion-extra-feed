@@ -31,5 +31,4 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/aslr $(1)/root
 endef
 
-$(eval $(call BuildPackage,ssp))
-
+$(eval $(call BuildPackage,aslr))

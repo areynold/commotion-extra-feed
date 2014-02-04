@@ -6,13 +6,15 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
+TARGET_CFLAGS:+=-ggdb3
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/$(PKG_NAME)
 	SECTION:=commotion
 	CATEGORY:=Commotion
 	SUBMENU:=Utilities
-	DEPENDS:=+commotion
+	DEPENDS:=+commotion +gdbserver
 	TITLE:=SSP Test
 	URL:=https://commotionwireless.net/
 endef

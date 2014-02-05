@@ -10,16 +10,9 @@ void foo(void) {
   fflush(stdout);
 }
 
+
 int main(int argc, char *argv[]) {
   char buf[4];
-
-  printf("Dummy password function to test stack protection\n \
-        to test, run ./smash and enter a string.\n \
-        * string 'commotion' should return 'Match. Root privileges given...'\n \
-        * a string less than 9 characters should return 'No match'\n \
-        * Without stack protection, a string greater than 10 characters should return 'No match. Root privileges given...'\n \
-        * With stack protection, a string greater than 10 characters should return an error and abort\n\n");
-
 
   printf("Here is the address of foo: %p\nEnter a string: ", foo);
   fflush(stdout);

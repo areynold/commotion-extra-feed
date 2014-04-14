@@ -6,7 +6,7 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
-TARGET_CFLAGS += -ggdb3
+TARGET_CFLAGS += -ggdb3 -O0 -fstack-protector-all
 
 include $(INCLUDE_DIR)/package.mk
 

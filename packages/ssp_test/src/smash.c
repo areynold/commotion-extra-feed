@@ -3,6 +3,7 @@
 // from http://jvns.ca/blog/2013/10/28/day-17-buffer-overflows/
 // from http://www.thegeekstuff.com/2013/02/stack-smashing-attacks-gcc/
 // http://www.thegeekstuff.com/2013/06/buffer-overflow/
+// http://www.linuxfromscratch.org/hints/downloads/files/ssp.txt
 char password[] = "meat";
 
 void foo(void) {

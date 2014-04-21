@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=ssp
+PKG_NAME:=ssp_test
 PKG_VERSION:=master
 PKG_RELEASE:=1
 
@@ -14,7 +14,7 @@ define Package/$(PKG_NAME)
 	SECTION:=commotion
 	CATEGORY:=Commotion
 	SUBMENU:=Utilities
-	DEPENDS:=+commotion +gdbserver
+	DEPENDS:=+commotion +gdbserver +SSP_SUPPORT:libssp
 	TITLE:=SSP Test
 	URL:=https://commotionwireless.net/
 endef
@@ -33,5 +33,5 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/smash $(1)/root
 endef
 
-$(eval $(call BuildPackage,ssp))
+$(eval $(call BuildPackage,ssp_test))
 

@@ -6,7 +6,9 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
-TARGET_CFLAGS += -ggdb3 -O0 -fstack-protector-all
+# NOTE: Must disable global -Os
+TARGET_CFLAGS += -ggdb3 -O0 -fstack-protector-all --param=ssp-buffer-size=4
+TARGET_LDFLAGS += -lssp
 
 include $(INCLUDE_DIR)/package.mk
 

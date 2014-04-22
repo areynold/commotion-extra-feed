@@ -17,6 +17,8 @@ Usage:
 
 If the package was compiled with SSP, smash will segfault. If not, it will execute the target function and print a message to the screen.
 
+Alternately, you can run `strings ./smash` and grep for "__stack_chk_fail", but that's not nearly as cool.
+
 Examples:
 If smash returns 0x804849d, you will first need to pad the address (making it 0804849d).
 

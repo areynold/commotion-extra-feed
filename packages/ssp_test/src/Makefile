@@ -1,4 +1,3 @@
-CFLAGS=-Wall -g
 SOURCES=smash
 
 all: $(SOURCES)

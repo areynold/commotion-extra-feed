@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
 	// stack-protector-all or -strong should catch this
 	char buf[4];
 
-	printf("Here is the address of foo: %p\nPassword is %s.\nRe-enter password: ", foo);
+	printf("Here is the address of foo: %p\nPassword is %s.\nRe-enter password: ", foo, password);
 	fflush(stdout);
 
 	// gets does not properly check array length

@@ -13,10 +13,11 @@ Usage:
 7. Telnet to router. No need to run through setup wizard.
 8. `cd /root`
 9. Run `./smash` to find the address of the vulnerable function. Note that the address format is 0x followed by 8 digits. You only need the digits after "0x". If smash provides fewer than 8, pad the address with 0s as needed. Also note that you will need to reverse the address on little-endian machines. See examples below.
-10. Type `printf "meat\x01\x12\x23\x34\x01\x12\x23\x34\x01\x12\x23\x34\x01\x12\x23\x34 | ./smash`. 
-
-If the package was compiled with SSP, smash will abort with the message `*** stack smashing detected ***: smash terminated
+10. Smash will display a 4-character string. Re-enter the string. Smash should abort with the "stack smashing detected" error.
+11. Run smash and enter a 3-character string. Smash should print your string and exit normally.
+12. Type `printf "meat\x01\x12\x23\x34\x01\x12\x23\x34\x01\x12\x23\x34\x01\x12\x23\x34 | ./smash`.  If the package was compiled with SSP, smash will abort with the message `*** stack smashing detected ***: smash terminated
 Trace/breakpoint trap`. If not, it will execute the target function and print a message to the screen.
+13. Run through setup wizard and confirm standard function tests (node meshes, etc.).
 
 Alternately, you can run `strings ./smash` and grep for "__stack_chk_fail", but that's not nearly as cool.
 

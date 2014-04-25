@@ -4,6 +4,7 @@
 // from http://www.thegeekstuff.com/2013/02/stack-smashing-attacks-gcc/
 // http://www.thegeekstuff.com/2013/06/buffer-overflow/
 // http://www.linuxfromscratch.org/hints/downloads/files/ssp.txt
+// http://multimedia.cx/eggs/heroic-defender-of-the-stack/
 char password[] = "meat";
 
 void foo(void) {

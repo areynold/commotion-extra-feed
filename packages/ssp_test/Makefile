@@ -6,9 +6,10 @@ PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
-# NOTE: Must disable global -Os
-# Ok to stomp globals for my purposes
-TARGET_CFLAGS = -pipe -mips32r2 -mtune=mips32r2 -fno-caller-saves -ggdb3 -O0 -fstack-protector-all --param=ssp-buffer-size=4
+# NOTE: Must disable global -Os, O1, O2
+TARGET_CFLAGS:=$(filter-out -Os, $(TARGET_CFLAGS))
+TARGET_CFLAGS += -O0 -fstack-protector-all --param-buffer-size=2 -ggdb3
+
 TARGET_LDFLAGS += -lssp
 
 include $(INCLUDE_DIR)/package.mk

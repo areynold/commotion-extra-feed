@@ -1,14 +1,28 @@
 #include <stdio.h>
-#include <msp_client.h>
+#include <stdint.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include "serval.h"
+#include "mdp_client.h"
+#include "msp_client.h"
+
 // From https://github.com/servalproject/serval-dna/blob/development/doc/Mesh-Streaming-Protocol.md
 
-// Create MSP Socket
 int mdp_fd = mdp_socket();
-struct msp_sock *sock = msp_socket(mdp_fd);
+// struct msp_sock *sock = msp_socket(mdp_fd);
+
+int main() {
+	// Create MSP Socket
+	printf("meat\n");
+	return 0;
+}
 
 // Receive inbound events on MSP Socket
 // For example, if the file descriptor is identified as having waiting input using poll() or select()
-msp_recv(mdp_fd);
+//msp_recv(mdp_fd);
 
 /* 
  * After calling msp_recv() you should then call msp_processing() as soon as possible, 
@@ -21,8 +35,8 @@ msp_recv(mdp_fd);
  * 
  */
 
-time_ms_t next_time;
-msp_processing(&next_time);
+//time_ms_t next_time;
+//msp_processing(&next_time);
 
 /*
  * This will set next_time to the next time at which msp_processing() should be called. 
@@ -36,12 +50,12 @@ msp_processing(&next_time);
  * only the primary SID of the node (BIND_PRIMARY), or to any particular SID passed in via addr.sid.
  */
 
-struct mdp_sockaddr addr;
-addr.port = 0;
-addr.sid = BIND_ALL;
-msp_set_local(msp_sock, addr);
-msp_listen(msp_sock);
+//struct mdp_sockaddr addr;
+//addr.port = 0;
+//addr.sid = BIND_ALL;
+//msp_set_local(msp_sock, addr);
+//msp_listen(msp_sock);
 
 
 // Close socket gracefully
-msp_shutdown(msp_sock);
+//msp_shutdown(msp_sock);

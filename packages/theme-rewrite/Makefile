@@ -1,7 +1,7 @@
-include $(INCLUDE_DIR)/build/config.mk
-include $(INCLUDE_DIR)/build/module.mk
-# include $(INCLUDE_DIR)/package.mk
-# include $(TOPDIR)/rules.mk
+include $(TOPDIR)/rules.mk
+# Specified in theming docs but not called correctly
+# include $(INCLUDE_DIR)/build/config.mk
+# include $(INCLUDE_DIR)/build/module.mk
 # 
 THEME_NAME:=commotion-rewrite
 THEME_TITLE:=Commotion Rewrite
@@ -18,6 +18,7 @@ PKG_SOURCE_VERSION:=$(PKG_VERSION)
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_SOURCE_VERSION).tar.gz
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
+include $(INCLUDE_DIR)/package.mk
 
 define Package/luci-theme-$(THEME_NAME)
   SECTION:=commotion
@@ -27,29 +28,33 @@ define Package/luci-theme-$(THEME_NAME)
   TITLE:=LuCI Theme - $(THEME_TITLE)
   URL:=https://www.commotionwireless.net/
 endef
-# 
-# define Build/Configure
-# endef
-# 
-# define Build/Compile
-# endef
-# 
-# define Package/luci-theme-$(THEME_NAME)/install
-# 	$(INSTALL_DIR) $(1)/etc/uci-defaults
+
+define Build/Configure
+endef
+
+define Build/Compile
+endef
+
+define Package/luci-theme-$(THEME_NAME)/install
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
 # 	echo "uci set luci.themes.$(THEME_TITLE)=/luci-static/$(THEME_NAME); uci set luci.main.mediaurlbase=/luci-static/$(THEME_NAME); uci commit luci" > $(1)/etc/uci-defaults/luci-theme-$(THEME_NAME)
-# 	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)
-# 	$(CP) $(PKG_BUILD_DIR)/files/htdocs/* $(1)/www/luci-static/$(THEME_NAME)/ 2>/dev/null || true
-# 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)
-# 	$(CP) $(PKG_BUILD_DIR)/files/templates/* $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)/ 2>/dev/null || true
+	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)
+	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)/css
+	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)/js
+	$(INSTALL_DIR) $(1)/www/luci-static/$(THEME_NAME)/images
+	$(CP) $(PKG_BUILD_DIR)/htdocs/luci-static/$(THEME_NAME)/* $(1)/www/luci-static/$(THEME_NAME)/ 2>/dev/null || true
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)
+	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)/functions
+	$(CP) $(PKG_BUILD_DIR)/luasrc/view/themes/$(THEME_NAME)/* $(1)/usr/lib/lua/luci/view/themes/$(THEME_NAME)/ 2>/dev/null || true
 # 	$(INSTALL_DIR) $(1)/usr/lib/lua/luci/view/cbi
 # 	$(CP) $(PKG_BUILD_DIR)/luasrc/view/cbi/* $(1)/usr/lib/lua/luci/view/cbi/ 2>/dev/null || true
-# endef
-# 
-# define Package/luci-theme-$(THEME_NAME)/postinst
-# #!/bin/sh
-# [ -n "$${IPKG_INSTROOT}" ] || {
-# 	( . /etc/uci-defaults/luci-theme-$(THEME_NAME) ) && rm -f /etc/uci-defaults/luci-theme-$(THEME_NAME)
-# }
-# endef
-# 
-# $(eval $(call BuildPackage,luci-theme-$(THEME_NAME)))
+endef
+
+define Package/luci-theme-$(THEME_NAME)/postinst
+#!/bin/sh
+[ -n "$${IPKG_INSTROOT}" ] || {
+	( . /etc/uci-defaults/luci-theme-$(THEME_NAME) ) && rm -f /etc/uci-defaults/luci-theme-$(THEME_NAME)
+}
+endef
+
+$(eval $(call BuildPackage,luci-theme-$(THEME_NAME)))
